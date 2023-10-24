@@ -21,17 +21,6 @@ async function main(url) {
             const animeCard = document.createElement("div");
             animeItem["entry"].slice(0, 1).forEach((anime) => {
                 animeCard.classList.add("card");
-
-                /**
-                 * у массива entry 2 объекта, имеющих id, поэтому 2 запроса
-                 *
-                 * нужно обращаться только к 1му объекту и все
-                 *
-                 *
-                 *
-                 *
-                 */
-
                 animeCard.innerHTML = `
                     <div class="card__cover-inner">
                         <img class="card__cover-inner-img" src="${anime.images.jpg["image_url"]}" alt="" class="card-img">
