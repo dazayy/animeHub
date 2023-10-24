@@ -147,6 +147,7 @@ body {
   position: relative;
   width: 200px;
   padding: 8px 10px;
+  cursor: pointer;
 }
 .card__cover-inner {
   position: relative;
@@ -180,4 +181,68 @@ body {
 }
 .card-darked:hover {
   opacity: 0.1;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
+.pagination-list {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+  background: #161417;
+  padding: 10px 17px;
+  border-radius: 2px;
+}
+.pagination-item {
+  color: white;
+  border-radius: 2px;
+  font-size: 1.2rem;
+  padding: 7px;
+  text-align: center;
+  transition: 0.25s;
+  cursor: pointer;
+}
+.pagination-item:hover {
+  background: #c91f1f;
+}
+.pagination-item-active {
+  background: #c91f1f;
+}
+
+.more-detail {
+  position: relative;
+  display: flex;
+  width: 420px;
+  max-height: 700px;
+}
+.more-detail-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background: #1d191f;
+  color: white;
+  padding: 0 20px;
+  flex-wrap: wrap;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+.more-detail-detail-inner img {
+  height: 100%;
+}
+.more-detail-info {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+}
+.more-detail-trailer {
+  text-decoration: none;
+  color: #c91f1f;
+  transition: 0.2s;
+}
+.more-detail-trailer:hover {
+  color: rgb(135, 17, 17);
 }/*# sourceMappingURL=view.css.map */

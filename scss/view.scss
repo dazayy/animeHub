@@ -1,6 +1,6 @@
 $bg-color: #1d191f;
-// $bg-color: #c26bed;
 $text-color: #ffff;
+$accent: #c91f1f;
 * {
     padding: 0;
     margin: 0;
@@ -152,7 +152,7 @@ body {
     position: relative;
     width: 200px;
     padding: 8px 10px;
-
+    cursor: pointer;
     &__cover-inner {
         position: relative;
         height: 250px;
@@ -188,6 +188,84 @@ body {
         transition: 0.2s;
         &:hover {
             opacity: 0.1;
+        }
+    }
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+    &-list {
+        display: flex;
+        gap: 15px;
+        list-style: none;
+        background: #161417;
+        padding: 10px 17px;
+        border-radius: 2px;
+    }
+
+    &-item {
+        color: $text-color;
+        border-radius: 2px;
+        font-size: 1.2rem;
+        padding: 7px;
+        text-align: center;
+        transition: 0.25s;
+        cursor: pointer;
+        &:hover {
+            background: $accent;
+        }
+        &-active {
+            background: $accent;
+        }
+    }
+}
+
+.more-detail {
+    position: relative;
+    display: flex;
+    width: 420px;
+    max-height: 700px;
+    &-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        background: $bg-color;
+        color: $text-color;
+        padding: 0 20px;
+        flex-wrap: wrap;
+        border-radius: 0.5rem;
+
+        width: 100%;
+    }
+    &-detail-inner {
+        img {
+            height: 100%;
+        }
+    }
+    &-info {
+        width: 100%;
+        font-size: 16px;
+        font-weight: 500;
+    }
+    &-title {
+    }
+    &-episodes {
+    }
+    &-status {
+    }
+    &-rating {
+    }
+    &-studio {
+    }
+    &-trailer {
+        text-decoration: none;
+        color: $accent;
+        transition: 0.2s;
+        &:hover {
+            color: rgb(135, 17, 17);
         }
     }
 }

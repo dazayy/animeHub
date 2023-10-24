@@ -1,31 +1,36 @@
 import { showModalSearch } from "./showSearch.js";
+import { getDataApi } from "./getData.js";
+import { getDetailInfo } from "./showDetail.js";
 
 const URL = "https://api.jikan.moe/v4/recommendations/anime";
-
-async function getDataApi(url) {
-    const request = await fetch(url, {
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
-    const data = await request.json();
-    return data;
-
-    // console.log(data);
-    // console.log(data.data["0"]["entry"]);
-}
 
 async function main(url) {
     const postsData = await getDataApi(url);
     let currentPage = 1;
-    let rows = 10;
+    const rows = 12;
 
     function displayList(arrData, rowPerPage, page) {
         const cards = document.querySelector(".cards");
-        data.data.forEach((animeItem) => {
+        cards.innerHTML = "";
+        page--;
+        const start = rowPerPage * page;
+        const end = start + rowPerPage;
+        const pagiantedData = arrData.slice(start, end);
+
+        pagiantedData.forEach((animeItem) => {
             const animeCard = document.createElement("div");
-            animeItem["entry"].forEach((anime) => {
+            animeItem["entry"].slice(0, 1).forEach((anime) => {
                 animeCard.classList.add("card");
+
+                /**
+                 * у массива entry 2 объекта, имеющих id, поэтому 2 запроса
+                 *
+                 * нужно обращаться только к 1му объекту и все
+                 *
+                 *
+                 *
+                 *
+                 */
 
                 animeCard.innerHTML = `
                     <div class="card__cover-inner">
@@ -36,10 +41,54 @@ async function main(url) {
                         <h2 class="card-title">${anime.title}</h2>
                     </div>
                 `;
+                animeCard.addEventListener("click", () =>
+                    getDetailInfo(anime.mal_id)
+                );
                 cards.appendChild(animeCard);
             });
         });
     }
+
+    function displayPagination(arrayData, rowPerPage) {
+        const paginationEl = document.querySelector(".pagination");
+        const pagesCount = Math.ceil(arrayData.length / rowPerPage);
+        const ulEl = document.createElement("ul");
+
+        ulEl.classList.add("pagination-list");
+
+        for (let i = 0; i < pagesCount; i++) {
+            const liEl = displayPaginationBtn(i + 1);
+            ulEl.appendChild(liEl);
+        }
+        paginationEl.appendChild(ulEl);
+    }
+
+    function displayPaginationBtn(page) {
+        const liEl = document.createElement("li");
+        liEl.classList.add("pagination-item");
+        liEl.innerText = page;
+
+        if (currentPage === page) {
+            liEl.classList.add("pagination-item-active");
+        }
+
+        liEl.addEventListener("click", () => {
+            currentPage = page;
+            displayList(postsData, rows, currentPage);
+
+            let currentItemLi = document.querySelector(
+                "li.pagination-item-active"
+            );
+
+            currentItemLi.classList.remove("pagination-item-active");
+            liEl.classList.add("pagination-item-active");
+        });
+
+        return liEl;
+    }
+
+    displayList(postsData, rows, currentPage);
+    displayPagination(postsData, rows);
 }
 
 function closeModal() {
@@ -63,8 +112,13 @@ searchElement.addEventListener("click", () => {
         .addEventListener("click", closeModal);
 });
 
-window.addEventListener("click", (event) => {
-    if (event.target === modalWindow) {
-        closeModal();
-    }
-});
+function closeInputListeners() {
+    window.addEventListener("click", (event) => {
+        if (event.target === modalWindow) {
+            closeModal();
+        }
+    });
+}
+
+main(URL);
+closeInputListeners();
