@@ -101,7 +101,7 @@ searchElement.addEventListener("click", () => {
         .addEventListener("click", closeModal);
 });
 
-function closeInputListeners() {
+function closeListeners() {
     window.addEventListener("click", (event) => {
         if (event.target === modalWindow) {
             closeModal();
@@ -110,4 +110,4 @@ function closeInputListeners() {
 }
 
 main(URL);
-closeInputListeners();
+closeListeners();

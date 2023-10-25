@@ -98,6 +98,8 @@ body {
     padding: 10px;
 
     &-content {
+        animation: 0.25s ease appearModal;
+
         position: relative;
         display: flex;
         height: 35px;
@@ -130,9 +132,9 @@ body {
     &-show {
         display: flex;
         justify-content: center;
-        transition: 0.2s;
     }
 }
+
 // -----------
 .stop-scrolling {
     height: 100%;
@@ -227,6 +229,8 @@ body {
     display: flex;
     width: 420px;
     max-height: 700px;
+    animation: 0.25s ease appearModal;
+
     &-card {
         display: flex;
         flex-direction: column;
@@ -267,5 +271,18 @@ body {
         &:hover {
             color: rgb(135, 17, 17);
         }
+    }
+}
+
+@keyframes appearModal {
+    0% {
+        opacity: 0;
+        transform: translate(0, -100%) scale(1);
+    }
+    50% {
+        opacity: 50%;
+    }
+    100% {
+        opacity: 100%;
     }
 }
