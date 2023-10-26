@@ -54,10 +54,8 @@ function closeListeners() {
     });
 }
 
-<<<<<<< HEAD
+
 closeListeners();
 main(URL_ANIME, typeContent);
-=======
-main(URL);
-closeListeners();
->>>>>>> d790862e753e313b5af51dcc51353b9a5b881ccb
+
+
